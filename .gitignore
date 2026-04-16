@@ -1,0 +1,6 @@
+.terraform/
+aws/
+*.zip
+*.pem
+*.tfstate
+*.tfstate.backup
