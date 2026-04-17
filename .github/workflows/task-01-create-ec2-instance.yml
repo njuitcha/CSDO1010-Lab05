@@ -1,11 +1,15 @@
 name: Deploy Infrastructure
+
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       confirmation:
         description: 'Type "deploy" to confirm infrastructure creation'
         required: true
-        default: 'none'
+        default: 'deploy'
 
 env:
   TF_WORKING_DIR: terraform
@@ -15,7 +19,8 @@ env:
 
 jobs:
   terraform:
-    if: github.event.inputs.confirmation == 'deploy'
+    # This logic now allows the job to run on a push OR if manual 'deploy' is entered
+    if: github.event_name == 'push' || github.event.inputs.confirmation == 'deploy'
     environment: LAB05
     name: Provision AWS EC2
     runs-on: ubuntu-latest
