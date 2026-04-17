@@ -7,7 +7,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "csdo1010-lab05-njuitcha" # Replace with your actual bucket name
+    # This MUST match your screenshot exactly
+    bucket = "csdo1010-lab05-tfstate-38200924" 
     key    = "terraform.tfstate"
     region = "us-east-1"
   }
